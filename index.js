@@ -73,7 +73,7 @@ async function run() {
 
 
         // get doctors
-        app.get("/doctors", verifyFirebaseToken, async (req, res) => {
+        app.get("/doctors", async (req, res) => {
             const result = await doctorsCollection.find().toArray();
             res.send(result)
         })
@@ -89,7 +89,7 @@ async function run() {
         })
 
         // get news
-        app.get("/news",verifyFirebaseToken, async (req, res) => {
+        app.get("/news", async (req, res) => {
             const result = await newsCollection.find().toArray();
             res.send(result)
         })
@@ -101,7 +101,7 @@ async function run() {
         })
 
         // get categories
-        app.get("/categories", verifyFirebaseToken, async (req, res) => {
+        app.get("/categories", async (req, res) => {
             const result = await categoriesCollection.find().toArray();
             res.send(result)
         })
@@ -114,7 +114,7 @@ async function run() {
         })
 
         // post appoinment
-        app.get('/appoinments', verifyFirebaseToken, async (req, res) => {
+        app.get('/appoinments', async (req, res) => {
             const result = await appoinmentCollection.find().toArray();
             res.send(result)
         })
@@ -133,7 +133,7 @@ async function run() {
         })
 
         // user get
-        app.get('/users', verifyFirebaseToken, async (req, res) => {
+        app.get('/users', async (req, res) => {
             const result = await usersCollection.find().toArray();
             res.send(result);
         })
