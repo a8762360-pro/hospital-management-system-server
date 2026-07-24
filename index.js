@@ -22,7 +22,7 @@ app.use(express.json())
 // middleware
 const verifyFirebaseToken = async (req, res, next) => {
     console.log('in verify', req.headers.authorization)
-    const authorization = ('in verify', req.headers.authorization)
+    const authorization = (req.headers.authorization)
     if (!authorization) {
         return res.status(401).send({ message: 'unauthorization token' })
     }
@@ -156,10 +156,6 @@ async function run() {
 run().catch(console.dir);
 
 
-
-// app.listen(port, () => {
-//     console.log(`Example app listening on port ${port}`)
-// })
 
 // module.exports = app;
 if (process.env.NODE_ENV !== "production") {
