@@ -22,7 +22,7 @@ app.use(express.json())
 // middleware
 const verifyFirebaseToken = async (req, res, next) => {
     console.log('in verify', req.headers.authorization)
-    const authorization = (req.headers.authorization)
+    const authorization = req.headers.authorization;
     if (!authorization) {
         return res.status(401).send({ message: 'unauthorization token' })
     }
@@ -96,6 +96,7 @@ async function run() {
 
         // get services
         app.get("/services", async (req, res) => {
+            console.log(req.headers)
             const result = await servicessCollection.find().toArray();
             res.send(result)
         })
@@ -133,7 +134,7 @@ async function run() {
         })
 
         // user get
-        app.get('/users', async (req, res) => {
+        app.get('/users', verifyFirebaseToken, async (req, res) => {
             const result = await usersCollection.find().toArray();
             res.send(result);
         })
