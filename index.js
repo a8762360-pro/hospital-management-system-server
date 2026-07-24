@@ -107,7 +107,7 @@ async function run() {
         })
 
         // post appoinment
-        app.post('/appoinments', verifyFirebaseToken, async (req, res) => {
+        app.post('/appoinments', async (req, res) => {
             const newAppoinment = (req.body);
             const result = await appoinmentCollection.insertOne(newAppoinment);
             res.send(result);
@@ -119,7 +119,7 @@ async function run() {
             res.send(result)
         })
         // get patient appoinment
-        app.get('/appoinments/:email', verifyFirebaseToken, async (req, res) => {
+        app.get('/appoinments/:email', async (req, res) => {
             const email = req.params.email;
             const quary = { email: email }
             const result = await appoinmentCollection.find(quary).toArray();
@@ -127,7 +127,7 @@ async function run() {
         })
 
         // user post
-        app.post('/users', verifyFirebaseToken, async (req, res) => {
+        app.post('/users', async (req, res) => {
             const result = await usersCollection.insertOne(req.body);
             res.send(result);
         })
